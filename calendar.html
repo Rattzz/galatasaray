@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 300px;
+      margin: 0 auto;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+      color: black; /* Set the default text color to black */
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .current-day {
+      background-color: yellow;
+    }
+    .today {
+      background-color: red;
+      color: white; /* Set the text color of the current day to white */
+    }
+    .token {
+      color: blue;
+    }
+    .time {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    .hour {
+      color: red;
+    }
+    .minute {
+      color: yellow;
+    }
+    .second {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex; justify-content: space-between;">
+    <h1 style="color: red; margin-right: 5px;">Galatasaray</h1>
+    <h2 style="color: yellow; margin-left: 5px;">Takvimi</h2>
+  </div>
+  <hr/>
+  
+
+  <table>
+    <tr>
+      <th>Paz</th>
+      <th>Pztsi</th>
+      <th>Sali</th>
+      <th>Cars</th>
+      <th>Prs</th>
+      <th>Cuma</th>
+      <th>Ctsi</th>
+    </tr>
+    <tr>
+      <td id="day1"></td>
+      <td id="day2"></td>
+      <td id="day3"></td>
+      <td id="day4"></td>
+      <td id="day5"></td>
+      <td id="day6"></td>
+      <td id="day7"></td>
+    </tr>
+  </table>
+
+  <div class="time">
+    <span class="hour"></span> :
+    <span class="minute"></span> :
+    <span class="second"></span>
+  </div>
+
+  <script>
+    function updateCalendar() {
+  const currentDate = new Date();
+  const currentDay = currentDate.getDay(); // Get the current day of the week (0-6, where 0 is Sunday)
+  const currentMonth = currentDate.getMonth(); // Get the current month (0-11, where 0 is January)
+  const today = currentDate.getDate(); // Get the current day of the month
+  
+  const daysOfWeek = ["Paz", "Pztsi", "Sali", "Cars", "Prs", "Cum", "Ctsi"];
+  const months = ["Ocak", "Subat", "Mart", "Nisan", "Mayis", "Haziran", "Temmuz", "Agustos", "Eylul", "Ekim", "Kasim", "Aralik"];
+  
+  const tableRow = document.querySelector("tr:last-child");
+  const dayCells = tableRow.querySelectorAll("td");
+  
+  for (let i = 0; i < 7; i++) {
+    const cell = dayCells[i];
+    const day = currentDate.getDate() + i; // Calculate the current day of the month
+    
+    // Add the token for the current day
+    if (day === today) {
+      cell.textContent = `(${daysOfWeek[(currentDay + i) % 7]}) ${day} ${months[currentMonth]}`;
+      cell.classList.add("today");
+      cell.style.color = "white"; // Set the text color of the current day to white
+    } else {
+      cell.textContent = `${daysOfWeek[(currentDay + i) % 7]} ${day} ${months[currentMonth]}`;
+    }
+    
+    cell.classList.add("current-day");
+    cell.innerHTML = `<span class="token">${cell.textContent}</span>`;
+  }
+}
+    
+    function updateTime() {
+      const currentTime = new Date();
+      const hours = currentTime.getHours();
+      const minutes = currentTime.getMinutes();
+      const seconds = currentTime.getSeconds();
+      
+      const hourSpan = document.querySelector(".hour");
+      const minuteSpan = document.querySelector(".minute");
+      const secondSpan = document.querySelector(".second");
+      
+      hourSpan.textContent = hours < 10 ? `0${hours}` : hours;
+      minuteSpan.textContent = minutes < 10 ? `0${minutes}` : minutes;
+      secondSpan.textContent = seconds < 10 ? `0${seconds}` : seconds;
+    }
+    
+    // Update the calendar immediately when the page loads
+    updateCalendar();
+    
+    // Update the calendar every second (optional, for demonstration purposes)
+    setInterval(updateCalendar, 1000);
+    
+    // Update the time every second
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>

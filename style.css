@@ -88,25 +88,7 @@
     color: #ffbf00;
 
 }
-button{
-
-    width: 200px;
-    padding: 1px 0;
-    text-align: center;
-    margin-top: -95px;
-    border-radius: 25px;
-    font-weight: bold;
-    border: 2px solid #ffbf00;
-    background: transparent;
-    color: #ffbf00;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    left: 27%;
-    transform: translateY(-50%);
-    font-size: 18px;
-}
-span{
+.highlight{
 
     background: #ff0000;
     height: 100%;
@@ -118,13 +100,45 @@ span{
     z-index: -1;
     transition: 0.5s;
 }
-button:hover span{
+.bottom:hover .highlight{
 
     width: 100%;
 }
-button:hover{
+.bottom:hover{
 
  border: none;
 }
+.bottom{
+  display: inline-block;
+  width: 200px;
+  padding: 10px 0;
+  text-align: center;
+  margin-top: -95px;
+  top: 100px;
+  border-radius: 25px;
+  font-weight: bold;
+  border: 2px solid #ffbf00;
+  background: transparent;
+  color: #ffbf00;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  left: 21%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  text-decoration: none; 
 
+}
+.gsstore {
+  top: -550px; /* Adjusted the top value to center the GS STORE link */
+  left: 27%; /* Adjusted the left value to center the GS STORE link */
+}
 
+iframe {
+  width: 34%;
+  height: 500px;
+  display: block;
+  position: fixed; /* Change the position to fixed */
+  bottom: 20px; /* Adjust the distance from the bottom */
+  right: 20px; /* Adjust the distance from the right */
+}
